@@ -9,8 +9,7 @@
         <!-- partial -->
         <div class="main-panel">
           <div class="content-wrapper">
-            {{-- @include('Admin.body') --}}
-            @yield('body')
+            @yield('content')
           </div>
           <!-- content-wrapper ends -->
 @include('Admin.footer')
