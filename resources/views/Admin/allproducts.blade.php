@@ -3,6 +3,8 @@
 
 @section('content')
 @include("success")
+@include("errors")
+
 <table class="table">
     <thead>
       <tr>
