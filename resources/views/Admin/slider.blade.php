@@ -67,7 +67,7 @@
           </li>
 
           <li class="nav-item menu-items">
-            <a class="nav-link" href="{{url('redirect')}}">
+            <a class="nav-link" href="{{url('products')}}">
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>

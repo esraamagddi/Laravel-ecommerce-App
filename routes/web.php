@@ -25,4 +25,8 @@ Route::get('redirect',[HomeController::class,'redirect']);
 Route::controller(ProductController::class)->group(function () {
     Route::post('/products', 'store')->name('store');
     Route::get('/products/create', 'create')->name('create');
+    Route::get('/products', 'allProducts')->name('allProducts');
+    Route::get('/products/show/{id}', 'show')->name('show');
+
+
 });

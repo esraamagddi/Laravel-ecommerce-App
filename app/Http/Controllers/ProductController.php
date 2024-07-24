@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 class ProductController extends Controller
 {
     //
@@ -13,6 +12,12 @@ class ProductController extends Controller
     {
         $categories=Category::all();
         return view("Admin.create",compact("categories"));
+    }
+
+    public function show($id)
+    {
+        $product=Product::findOrFail($id);
+        return view("Admin.show",compact("product"));
     }
 
     public function store(Request $request){
@@ -28,7 +33,8 @@ class ProductController extends Controller
         ]);
 
         //store
-        $data['image']=Storage::putFile("products",$data['image']);
+        $data['image'] = $request->file('image')->store('products', 'public');
+
         //create
         Product::create($data);
         //redirect
@@ -36,5 +42,10 @@ class ProductController extends Controller
         return redirect(url('products/create'))->with("success","data inserted successfully");
 
         // echo "hi im store";
+    }
+
+    public function allProducts() {
+        $products=Product::all();
+        return view("Admin.allproducts",compact("products"));
     }
 }
