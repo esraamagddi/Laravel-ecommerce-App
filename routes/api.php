@@ -13,7 +13,7 @@ Route::controller(ApiProductController::class)->group(function(){
 
     Route::get('products',  'allProducts');
     Route::get('products/{id}',  'show');
-    Route::get('products',  'allProducts');
+    Route::post('products',  'store');
     Route::get('products',  'allProducts');
 
 });
