@@ -14,6 +14,6 @@ Route::controller(ApiProductController::class)->group(function(){
     Route::get('products',  'allProducts');
     Route::get('products/{id}',  'show');
     Route::post('products',  'store');
-    Route::get('products',  'allProducts');
+    Route::put('products/{id}',  'update');
 
 });

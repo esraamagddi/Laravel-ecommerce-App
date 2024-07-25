@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class ApiProductController extends Controller
@@ -56,5 +57,54 @@ class ApiProductController extends Controller
         ]);
         return response()->json([
             "message" =>"Product added successfully"
-        ],201);    }
+        ],201);
+      }
+
+      public function update(Request $request, $id){
+        $validator = Validator::make($request->all(),[
+            'name'=>'required|string|max:255',
+            'description'=>'required|string',
+            'price'=>'required|numeric',
+            'category_id'=>'required',
+            'image'=>'image|mimes:jpeg,png,jpg|max:2048',
+            "quantity"=>'required|integer',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        if($validator->fails()){
+            return response()->json($validator->errors(),400);
+        }
+
+        $product=Product::find($id);
+        if ($product == null){
+            return response()->json([
+                "message" =>"Product not found"
+            ],404);
+        }
+
+        $imageName=$request->image;//old name
+
+        if($request->has('image'))
+        {
+
+                Storage::delete('public/storage/' . $imageName);
+                $imageName = $request->file('image')->store('products', 'public'); //new name
+            }
+
+        $product->update([
+            "name"=>$request->name,
+            "description"=>$request->description,
+            "price"=>$request->price,
+            "category_id"=>$request->category_id,
+            "quantity"=>$request->quantity,
+            "image"=>$imageName
+        ]);
+
+        return response()->json([
+            "message" =>"Product updated successfully",
+            "products"=>new ProductResource($product)
+        ],201);
+
+
+      }
 }
