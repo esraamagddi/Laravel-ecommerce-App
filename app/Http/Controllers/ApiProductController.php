@@ -86,8 +86,10 @@ class ApiProductController extends Controller
 
         if($request->has('image'))
         {
+                if ($product->image !==null){
 
-                Storage::delete('public/storage/' . $imageName);
+                    Storage::delete('public/storage/' . $imageName);
+                }
                 $imageName = $request->file('image')->store('products', 'public'); //new name
             }
 
@@ -106,5 +108,25 @@ class ApiProductController extends Controller
         ],201);
 
 
+      }
+
+      public function delete($id){
+        $product=Product::find($id);
+        if ($product == null){
+            return response()->json([
+                "message" =>"Product not found"
+            ],404);
+        }
+        if ($product->image !==null){
+
+            Storage::delete('public/storage/'. $product->image);
+        }
+
+
+        $product->delete();
+
+        return response()->json([
+            "message" =>"Product deleted successfully"
+        ],200);
       }
 }
