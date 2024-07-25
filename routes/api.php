@@ -8,4 +8,12 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('products', [ApiProductController::class, 'allProducts']);
+
+Route::controller(ApiProductController::class)->group(function(){
+
+    Route::get('products',  'allProducts');
+    Route::get('products/{id}',  'show');
+    Route::get('products',  'allProducts');
+    Route::get('products',  'allProducts');
+
+});
