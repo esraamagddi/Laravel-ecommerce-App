@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 class ApiAuthController extends Controller
@@ -22,7 +23,7 @@ class ApiAuthController extends Controller
 
         $password= bcrypt($request->password);
         $access_token=Str::random(255);
-        $user=User::create([
+        User::create([
             'name'=>$request->name,
             'email'=>$request->email,
             'password'=>$password,
@@ -33,6 +34,39 @@ class ApiAuthController extends Controller
             'message'=>"registered successfully",
             'access_token'=>$access_token
     ],201);
+
+    }
+
+    public function login(Request $request){
+       $validator= Validator::make($request->all(),[
+            'email'=>'required|string|email',
+            'password'=>'required|string|min:8'
+        ]);
+
+        if($validator->fails()){
+            return response()->json(['errors'=>$validator->errors()],400);
+        }
+        $user=User::where('email','=',$request->email)->first();
+        if($user !==null){
+            $oldPassword=$user->password;
+            $isVerified=Hash::check($request->password, $oldPassword);
+            if($isVerified){
+                $user->update([
+                    'access_token'=>Str::random(64)
+                ]);
+                return response()->json([
+                    'message'=>'Logged in successfully',
+                    'access_token'=>$user->access_token
+                ],200);
+
+            }else{
+                return response()->json(['message'=>'cerdintials not correct'],401);
+            }
+
+
+        }else{
+            return response()->json(['message'=>'User not found'],404);
+        }
 
     }
 }
