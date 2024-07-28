@@ -160,8 +160,12 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="profileDropdown">
                       <a class="dropdown-item" href="{{ url('dashboard') }}">Dashboard</a>
                       <a class="dropdown-item" href="#">Settings</a>
+
+
                       <div class="dropdown-divider"></div>
                       <a class="dropdown-item" href="#">Logout</a>
+                      <a class="dropdown-item" href="{{ url("change/en") }}">English</a>
+                      <a class="dropdown-item" href="{{ url("change/ar") }}">العربية</a>
                     </div>
                   </li>
 

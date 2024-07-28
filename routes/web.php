@@ -33,6 +33,18 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/products/edit/{id}', 'edit')->name('edit');
     Route::put('/products/{id}', 'update')->name('update');
     Route::delete('/products/{id}', 'delete')->name('delete');
+
+
 });
 
 });
+
+Route::get('change/{lang}',function($lang){
+    if($lang=="ar"){
+        session()->put('lang', 'ar');
+    }else
+    {
+        session()->put('lang', 'en');
+    }
+    return redirect()->back();
+})->middleware('ChangeLang');

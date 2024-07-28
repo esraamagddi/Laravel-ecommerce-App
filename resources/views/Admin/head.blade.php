@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ __("locate.lang") }}" dir="{{ __("locate.dir") }}">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
