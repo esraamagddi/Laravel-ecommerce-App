@@ -62,7 +62,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
-              <span class="menu-title">Dashboard</span>
+              <span class="menu-title">{{ trans("locate.Dashboard") }}</span>
             </a>
           </li>
 
@@ -71,7 +71,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
-              <span class="menu-title">All products</span>
+              <span class="menu-title">{{ trans("locate.All products") }}</span>
             </a>
           </li>
           <li class="nav-item menu-items">
@@ -79,7 +79,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-speedometer"></i>
               </span>
-              <span class="menu-title">Add product</span>
+              <span class="menu-title">{{ trans("locate.Add product") }}</span>
             </a>
           </li>
 
