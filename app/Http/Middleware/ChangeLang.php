@@ -19,7 +19,6 @@ class ChangeLang
 
         if (session()->has('lang')) {
             App::setLocale(session()->get('lang'));
-            var_dump(session()->get('lang') );
         }
         return $next($request);
     }
