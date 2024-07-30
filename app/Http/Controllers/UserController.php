@@ -22,4 +22,19 @@ class UserController extends Controller
 
         return view("User.show",compact("product","category"));
     }
+
+    public function search(Request $request)
+
+    {
+        $request->validate([
+            'query' => 'nullable|string|max:255',
+        ]);
+
+        $query = (string) $request->input('query', '');
+
+        $products = Product::where('name', 'like', "%$query%")->get();
+
+        return view('User.home', compact('products', 'query'));
+
+    }
 }
