@@ -21,6 +21,18 @@
             <li class="nav-item">
               <a class="nav-link" href="contact.html">Contact Us</a>
             </li>
+            @guest
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url("dashboard") }}">Login</a>
+            </li>
+            @endguest
+
+            @auth
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url("dashboard") }}">Logout</a>
+            </li>
+            @endauth
           </ul>
         </div>
       </div>

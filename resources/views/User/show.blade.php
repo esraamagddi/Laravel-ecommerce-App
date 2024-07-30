@@ -1,5 +1,5 @@
 
-    
+
     <div class="container">
         <div class="product-details">
             <div class="row">
@@ -10,6 +10,8 @@
                     <h1>{{ $product->name }}</h1>
                     <h3>${{ $product->price }}</h3>
                     <p>{{ $product->description }}</p>
+                    <p>{{ $category->name }}</p>
+
                     <br>
                     <a href="{{ url('cart/add/' . $product->id) }}" class="btn btn-primary">Add to Cart</a>
                 </div>
