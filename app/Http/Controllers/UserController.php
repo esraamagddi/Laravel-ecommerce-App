@@ -12,4 +12,10 @@ class UserController extends Controller
         $products=Product::all();
         return view("User.home",compact("products"));
     }
+
+    public function show($id)
+    {
+        $product=Product::findOrFail($id);
+        return view("User.show",compact("product"));
+    }
 }

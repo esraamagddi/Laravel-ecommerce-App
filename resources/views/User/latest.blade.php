@@ -13,7 +13,7 @@
           <div class="product-item">
             <td><img src="{{asset("storage/".$product->image)}}" width="100px" alt="{{$product->name}}" srcset=""></td>
             <div class="down-content">
-                <a class="" href="{{url("products/$product->id")}}" ><h4>{{$product->name}}</h4></a>
+                <a class="" href="{{url("products/show/$product->id")}}" ><h4>{{$product->name}}</h4></a>
               <h6>${{$product->price}}</h6>
               <p{{$product->description}}</p>
               <ul class="stars">
