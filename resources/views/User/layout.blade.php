@@ -18,7 +18,7 @@
     <!-- Page Content -->
     <!-- Banner Starts Here -->
 @include("User.slider")
-@include("User.latest")
+@yield('latest')
 @include("User.body")
 
 
